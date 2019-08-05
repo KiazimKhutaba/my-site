@@ -1,5 +1,5 @@
-# my-site
-I am simply learning
+# My Simple Blog System
+Clone and run. Nothing more
 
 ## TgConfig class
 
