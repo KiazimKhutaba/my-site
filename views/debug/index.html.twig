@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} Отладка {% endblock %}
+
+{% block content %}
+
+    <div class="article">
+
+        <table border="1">
+            <tr>
+                <th>№</th>
+                <th>URL</th>
+                <th>Handler</th>
+                <th>Methods</th>
+            </tr>
+
+            {% for route in routes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <a href="{{ route.url }}">{{ route.url }}</a>
+                    </td>
+                    <td>{{ route.handler }}</td>
+                    <td>{{ route.methods | join(",") }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+{% endblock %}

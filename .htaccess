@@ -1,0 +1,12 @@
+AddDefaultCharset UTF-8
+Options +FollowSymlinks
+
+RewriteEngine on
+
+RewriteBase /
+
+Options +Indexes
+Options -Includes
+
+RewriteRule ^$     public/
+RewriteRule ^(.*)$ public/$1 [L,QSA]

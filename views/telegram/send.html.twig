@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block style %}
+
+    <style>
+        
+        #text {
+            border: 1px solid #d0d0d0;
+            padding: 5px;
+            font-size: 1.05em;
+            width: 90%;
+        }
+
+        input[type=submit] {
+            border: 1px solid #0000ff;
+            padding: 5px 35px;
+            background: #0000ff;
+            color: #fff;
+        }
+
+        div.info_message {
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            background: #ebf9ed;
+            color: #009d0f;
+        }
+
+    </style>
+    
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="article">
+
+        <h3>Send Feedback</h3>
+
+        {% if tgResponse.ok is defined %}
+        <div class="info_message">
+            Message successfully sent
+        </div>
+        {% endif %}
+        
+        <form action="/telegram/send">
+            <p><label for="text">Message</label></p>
+            <p>
+                <textarea name="tgMessage" id="text" cols="60" rows="10">{{ test }}</textarea>
+            </p>
+            <p><input type="submit" value="Send" name="tgSendBtn"></p>
+        </form>
+
+    </div>
+
+{% endblock %}

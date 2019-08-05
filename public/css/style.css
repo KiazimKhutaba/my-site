@@ -1,0 +1,166 @@
+.brd {
+    border: 1px solid #00f;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+body .container {
+    width: 900px;
+    margin: 1px auto;
+    padding: 0 0 0 50px;
+}
+
+body .container .header-menu,
+body .container .post,
+body .container .right-menu {
+    border-radius: 5px;
+	background: #fff;
+}
+
+body .container .header .header-title {
+    font-size: 2.8em;
+    color: #333;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 10px 0;
+}
+
+body .container .header .header-title .header-decor {
+    color: #00f;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body .container .header .header-menu {
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 0 10px #d0d0d0;
+    padding: 10px;
+}
+
+body .container .header .header-menu a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: blue;
+}
+
+body .container .header .header-menu a:last-child {
+    float: right;
+}
+
+body .container .header .header-menu a:hover {
+    text-decoration: underline;
+}
+
+body .container .right-menu {
+    float: right;
+    width: 18%;
+    margin-top: 15px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0px 0px 10px #d0d0d0;
+}
+
+body .container .right-menu .entry .title {
+    padding: 15px 5px 5px 10px;
+    border-bottom: 4px solid #00f;
+    margin: 5px;
+}
+
+body .container .right-menu .entry a {
+    display: block;
+    text-decoration: none;
+    color: #00f;
+    padding: 5px 0 0 15px;
+}
+
+body .container .content {
+    margin-top: 15px;
+    width: 80%;
+}
+
+body .container .content .article {
+    margin: 15px 0;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 0 10px #d0d0d0;
+    padding-left: 20px;
+    padding-right: 10px;
+	background: #fff;
+}
+
+body .container .content .post {
+    margin: 15px 0;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0px 0px 10px #d0d0d0;
+    padding-left: 20px;
+}
+
+body .container .content .post .post-title {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+body .container .content .post .post-info {
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+body .container .content .post .post-image {
+    margin-bottom: 10px;
+}
+
+body .container .content .post .post-intro {
+    margin-bottom: 15px;
+}
+
+body .container .content .post .post-read-next {
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: #00f;
+    color: #fff;
+    border-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+body .container .content .post .post-read-next:hover {
+    cursor: pointer;
+    background: #f00;
+    color: #fff;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+body .container .content .pagination {
+    margin: 35px 0;
+    text-align: center;
+}
+
+body .container .content .pagination a {
+    text-decoration: none;
+    background: #00f;
+    padding: 5px 15px;
+    color: #fff;
+    border: 1px solid #00f;
+    border-radius: 5px;
+}
+
+body .container .content .pagination a:hover {
+    cursor: pointer;
+    background: #f00;
+    color: #fff;
+    border: 1px solid #f00;
+}
+
+body .container .clear {
+    clear: both;
+}
+
+body .container .footer {
+    text-align: center;
+    padding: 10px;
+    color: #444;
+}

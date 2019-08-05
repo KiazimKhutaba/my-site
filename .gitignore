@@ -1,0 +1,5 @@
+/vendor/*
+/deployment/*
+/var/*
+.idea
+/config/TgConfig.php

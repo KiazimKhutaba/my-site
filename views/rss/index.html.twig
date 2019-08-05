@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block style %}
+
+    <style>
+
+        .channel {
+            border: 1px solid #ddd;
+            margin: 5px 1px;
+            padding: 5px;
+        }
+
+        .channel .title {
+            paddind: 5px;
+            font-size: 1.15em;
+        }
+
+
+        .item {
+            margin: 3px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .item .title {
+            font-weight: bold;
+            font-size: 1.1em;
+            padding-bottom: 5px;
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="article">
+
+        <div class="channel">
+            <div class="title">
+                <a href="{{ channel.link }}">{{ channel.title }}</a>
+            </div>
+            <div class="description">{{ channel.description }}</div>
+        </div>
+
+        <div class="channel-items">
+            {% for item in channel_items %}
+                <div class="item">
+                    <div class="title">{{ item.title }}</div>
+                    <div class="description">{{ item.description | raw }}</div>
+                    <div class="link">
+                        <a href="{{ item.link }}" target = "_blank">Далее</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

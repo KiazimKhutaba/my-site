@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+    <div class="post">
+        <div class="post-title">Первая статья в блоге</div>
+        <div class="post-info">
+            <span class="post-author">Kiazim.Khutaba</span>
+            <span class="post-date">15 июля 2019 в 11:22</span>
+            <span class="post-category">Разное*</span>
+        </div>
+        <div class="post-image">
+            <img src="images/first-post-in-blog.png"
+                 alt="Первая статья в блоге"
+                 width="300">
+        </div>
+        <div class="post-intro">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Vitae exercitationem numquam voluptatem. Necessitatibus corrupti voluptas officia rem quisquam architecto
+            excepturi,
+            ut voluptate doloremque tenetur sapiente quibusdam minima? Tenetur, omnis veniam.
+        </div>
+        <button class="post-read-next">
+            <a href="/article/12091984">Читать далее</a>
+        </button>
+    </div>
+
+    <div class="post">
+        <div class="post-title">Как создать сайт?</div>
+        <div class="post-info">
+            <span class="post-author">Kiazim.Khutaba</span>
+            <span class="post-date">1 июля 2019 в 01:12</span>
+            <span class="post-category">PHP*</span>
+        </div>
+        <div class="post-image">
+            <img src="images/what-is-it.png"
+                 alt="Что там такое"
+                 width="300">
+        </div>
+        <div class="post-intro">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Vitae exercitationem numquam voluptatem. Necessitatibus corrupti voluptas officia rem quisquam architecto
+            excepturi,
+            ut voluptate doloremque tenetur sapiente quibusdam minima? Tenetur, omnis veniam.
+        </div>
+        <button class="post-read-next">Читать далее</button>
+    </div>
+
+
+    <div class="pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">...</a>
+        <a href="#">10</a>
+        <a href="#">11</a>
+    </div>
+
+{% endblock %}

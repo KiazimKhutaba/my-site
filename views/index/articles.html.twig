@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+
+    <div class="article">
+        <h4>Список всех статей</h4>
+
+        <p>
+            Все статьи будут здесь. Так как это удобно
+        </p>
+        А вот и одна из них
+        <a href="/article/{{ number }}">Статья №{{ number }}</a>
+
+        <p>
+            А вот такой страницы в природе не существует!
+            <a href="/i-am-fuck-you">I am...</a>
+        </p>
+    </div>
+
+
+
+{% endblock %}
