@@ -4,7 +4,7 @@
 namespace Castels\Service;
 
 
-use Castels\Config;
+use Castels\TgConfig;
 
 class TelegramService
 {

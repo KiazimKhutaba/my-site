@@ -104,17 +104,20 @@ class Application
     {
     }
 
-    public function run()
+    public function cacheRoutes(RouteCollector $collector, array $classes)
     {
-        /*if (file_exists("cache/routes.txt")) {
-            $routes = unserialize(file_get_contents("cache/routes.txt"));
+        $cached_routes = Config::AppCache . "/routes/routes.txt";
+        $routes = [];
+
+        if (file_exists($cached_routes)) {
+            $routes = unserialize(file_get_contents($cached_routes));
         } else {
-            // собираем маршруты с класса
             $routes = $collector->collectAll($classes);
-            file_put_contents("cache/routes.txt", serialize($routes));
-        }*/
+            file_put_contents($cached_routes, serialize($routes));
+        }
 
         //debug($routes);
+        return $routes;
 
     }
 }
