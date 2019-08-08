@@ -7,7 +7,7 @@ namespace Castels;
 use Castels\Controllers\HttpErrorController;
 use Castels\Core\Exceptions\ResourceNotFoundException;
 use Castels\Core\Routing\Annotation\Route;
-use Castels\Core\Routing\FileLoader;
+use Castels\Core\Routing\AnnotatedClassLoader;
 use Castels\Core\Routing\RouteCollector;
 use Castels\Core\Routing\Router;
 use Exception;
@@ -90,7 +90,7 @@ class Application
 
     public function getAnnotatedControllers()
     {
-        $loader = new FileLoader();
+        $loader = new AnnotatedClassLoader();
         return $loader->load(Config::AppControllers, Config::ControllersNSPrefix);
     }
 

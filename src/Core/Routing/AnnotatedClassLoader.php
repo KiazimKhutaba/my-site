@@ -9,12 +9,12 @@ use RecursiveIteratorIterator;
 use RegexIterator;
 
 /**
- * Class FileLoader
+ * Class AnnotatedClassLoader
  * @package Castels\Routing
  *
  * Loads files by mask recursively
  */
-class FileLoader
+class AnnotatedClassLoader
 {
     /**
      * @param $path

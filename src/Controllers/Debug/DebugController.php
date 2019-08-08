@@ -6,7 +6,7 @@ namespace Castels\Controllers\Debug;
 
 use Castels\Core\Controller;
 use Castels\Core\Routing\Annotation\Route;
-use Castels\Core\Routing\FileLoader;
+use Castels\Core\Routing\AnnotatedClassLoader;
 use Symfony\Component\HttpFoundation\Response;
 
 
