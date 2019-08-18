@@ -19,9 +19,9 @@ class RebuildingController extends Controller
      */
     public function index()
     {
-        $twig = $this -> get("twig");
+        $twig = $this->get("twig");
 
-        return new Response($twig -> render(
+        return new Response($twig->render(
             "rebuilding/rebuilding.html.twig"
         ));
     }

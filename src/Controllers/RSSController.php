@@ -19,7 +19,6 @@ class RSSController extends Controller
      */
     public function index()
     {
-        $twig = $this->get("twig");
 
         // Fetch the latest Slashdot headlines
         try {
@@ -53,7 +52,7 @@ class RSSController extends Controller
 
         //return new Response(debug($slashdotRss,1));
 
-        return new Response($twig->render(
+        return new Response($this->render(
             "rss/index.html.twig",
             ["channel" => $channel, "channel_items" => $channel["items"]]
         ));

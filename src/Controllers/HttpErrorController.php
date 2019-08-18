@@ -5,22 +5,22 @@ namespace Castels\Controllers;
 
 
 use Castels\Core\Controller;
+use Castels\Core\Routing\Annotation\Route;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Castels\Core\Routing\Annotation\Route;
 
 
 class HttpErrorController extends Controller
 {
     /**
- * @Route(
- *     url="/error404",
- *     handler="error404"
- * )
- *
- * @return Response
- */
+     * @Route(
+     *     url="/error404",
+     *     handler="error404"
+     * )
+     *
+     * @return Response
+     */
     public function error404()
     {
         $twig = $this->get("twig");
@@ -67,12 +67,12 @@ class HttpErrorController extends Controller
      * @param Exception $e
      * @return Response
      */
-    public function error500(Exception $e)
+    public function error500($e)
     {
         $twig = $this->get("twig");
 
         $response = new Response($twig->render(
-            "error/500.html.twig", [ "message" => $e -> getMessage() ]
+            "error/500.html.twig", ["message" => $e]
         ),
             Response::HTTP_SERVICE_UNAVAILABLE
         );
@@ -87,10 +87,10 @@ class HttpErrorController extends Controller
      *     handler="veryLongArgs"
      * )
      */
-    public function veryLongArgs($company,$year,$month,$day,$url)
+    public function veryLongArgs($company, $year, $month, $day, $url)
     {
         return new Response(
-          sprintf("Co: %s, %d/%d/%d. Url: %s",$company,$year,$month,$day,$url)
+            sprintf("Co: %s, %d/%d/%d. Url: %s", $company, $year, $month, $day, $url)
         );
     }
 }

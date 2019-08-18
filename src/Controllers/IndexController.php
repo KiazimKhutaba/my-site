@@ -4,7 +4,6 @@ namespace Castels\Controllers;
 
 use Castels\Core\Controller;
 use Castels\Core\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,6 +16,19 @@ use Symfony\Component\HttpFoundation\Response;
 class IndexController extends Controller
 {
     /**
+     * @Route(
+     *  url="/system/info",
+     *  handler="systemInfo"
+     * )
+     */
+    public static function systemInfo()
+    {
+        $content = sprintf("<pre>%s</pre>", print_r(get_included_files(), true));
+
+        return new Response($content);
+    }
+
+    /**
      *
      * @Route(
      *     url="/",
@@ -25,13 +37,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
-            "index/main_page.html.twig"
-        ));
-
-        return $response;
+        return $this->render('index/main_page.html.twig');
     }
 
     /**
@@ -43,16 +49,13 @@ class IndexController extends Controller
      */
     public function articles()
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
+        $response = $this->render(
             "index/articles.html.twig",
             ["number" => rand(0, PHP_INT_MAX)]
-        ));
+        );
 
         return $response;
     }
-
 
     /**
      *
@@ -60,19 +63,13 @@ class IndexController extends Controller
      *     url="/article/(\d+)",
      *     handler="article"
      * )
+     * @param int $id article id
+     * @return Response
      */
     public function article($id)
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
-            "index/article.html.twig",
-            ["id" => $id]
-        ));
-
-        return $response;
+        return $this->render("index/article.html.twig", ["id" => $id]);
     }
-
 
     /**
      *
@@ -83,13 +80,7 @@ class IndexController extends Controller
      */
     public function contact()
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
-            "index/contact.html.twig"
-        ));
-
-        return $response;
+        return $this->render("index/contact.html.twig");
     }
 
     /**
@@ -101,13 +92,7 @@ class IndexController extends Controller
      */
     public function about()
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
-            "index/about.html.twig"
-        ));
-
-        return $response;
+        return $this->render("index/about.html.twig");
     }
 
     /**
@@ -119,28 +104,7 @@ class IndexController extends Controller
      */
     public function search()
     {
-        $twig = $this->get("twig");
-
-        $response = new Response($twig->render(
-            "index/search.html.twig"
-        ));
-
-        return $response;
-    }
-
-
-
-    /**
-     * @Route(
-     *  url="/system/info",
-     *  handler="systemInfo"
-     * )
-     */
-    public static function systemInfo()
-    {
-		$content = sprintf("<pre>%s</pre>",print_r(get_included_files(), true));
-		
-        return new Response($content);
+        return $this->render("index/search.html.twig");
     }
 
 

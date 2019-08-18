@@ -11,6 +11,7 @@ namespace Castels\Core\Routing\Annotation;
  */
 class Route
 {
+    public $name = "";
     public $url = ""; // url маршрута
     public $handler = ""; // обработчик - метод класса
     public $methods = [];

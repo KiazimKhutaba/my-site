@@ -18,7 +18,21 @@ body .container .header-menu,
 body .container .post,
 body .container .right-menu {
     border-radius: 5px;
-	background: #fff;
+    background: #fff;
+}
+
+div.info_message {
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    background: #ebf9ed;
+    color: #009d0f;
+}
+
+div.errorMsg {
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    background: #ffc1cf;
+    color: #9d0000;
 }
 
 body .container .header .header-title {
@@ -85,7 +99,7 @@ body .container .content .article {
     box-shadow: 0 0 10px #d0d0d0;
     padding-left: 20px;
     padding-right: 10px;
-	background: #fff;
+    background: #fff;
 }
 
 body .container .content .post {

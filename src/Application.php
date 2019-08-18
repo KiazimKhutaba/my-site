@@ -6,15 +6,13 @@ namespace Castels;
 
 use Castels\Controllers\HttpErrorController;
 use Castels\Core\Exceptions\ResourceNotFoundException;
-use Castels\Core\Routing\Annotation\Route;
 use Castels\Core\Routing\AnnotatedClassLoader;
 use Castels\Core\Routing\RouteCollector;
 use Castels\Core\Routing\Router;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Exception;
 use Pimple\Container;
 use Symfony\Component\HttpFoundation\Request;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 
 class Application
@@ -27,97 +25,99 @@ class Application
      */
     public function __construct()
     {
-        new Route(); // for annotation autoloading
-        $this->container = new Container();
-        $this->container["app"] = $this;
-        $this->setUp();
-        //set_exception_handler([Application::class,'exceptionHandler']);
+        // global exception handler
+        set_exception_handler([$this, 'exceptionHandler']);
+
+        // need for annotation autoloading
+        AnnotationRegistry::registerLoader('class_exists');
+
+        // register needed services
+        $this->registerServices();
+
     }
 
-    public function setUp()
+    public function registerServices()
     {
+        $this->container = new Container();
 
-        $this->container['twig'] = function () {
+        // global app instance
+        $this->container['app'] = $this;
 
-            $loader = new FilesystemLoader(Config::AppViews);
-            $twig = new Environment($loader,
-                ['cache' => false]
-            /*['cache' => __DIR__ . '/../cache']*/
-            );
-
-            return $twig;
-        };
-
-        return $this;
+        $services = require_once '../config/services.php';
+        foreach ($services as $name => $callback)
+            $this->container[$name] = $callback;
     }
+
 
     /**
      * @param Request $request
      * @return mixed
+     * @throws ResourceNotFoundException
      */
     public function handle(Request $request)
     {
-        $error = new HttpErrorController();
-        $error->setContainer($this->container);
+        $classes = $this->getAnnotatedControllers();
+        $routes = $this->getRoutes($classes);
 
-        try {
-            $classes = $this->getAnnotatedControllers();
-            $routes = $this->getRoutes($classes);
+        $router = new Router();
+        $router->addRoutes($routes);
 
-            $router = new Router();
-            $router->addRoutes($routes);
+        $route = $router->match($request->getPathInfo());
 
-            $route = $router->match($request->getPathInfo());
+        list($controller, $method) = explode("::", $route->handler);
 
-            list($controller, $method) = explode("::", $route->handler);
+        $obj = new $controller();
+        $obj->setContainer($this->container);
 
-            $obj = new $controller();
-            $obj->setContainer($this->container);
+        $response = call_user_func_array([$obj, $method], $route->params);
 
-            $response = call_user_func_array([$obj, $method], $route->params);
-
-            return $response;
-
-        } 
-		catch (ResourceNotFoundException $e) {
-            return $error->error404();
-        } 
-		catch (Exception $e) {
-            return $error->error500($e);
-        }
+        return $response;
 
     }
 
+    /**
+     * Load annotated controllers
+     *
+     * @return array|false
+     */
     public function getAnnotatedControllers()
     {
         $loader = new AnnotatedClassLoader();
         return $loader->load(Config::AppControllers, Config::ControllersNSPrefix);
     }
 
+    /**
+     * Load routes from controllers
+     *
+     * @param $classes
+     * @return array
+     */
     public function getRoutes($classes)
     {
         $collector = new RouteCollector();
         return $collector->collectAll($classes);
     }
 
+    /**
+     * Global exception handler
+     *
+     * @param Exception $e
+     */
     public function exceptionHandler($e)
     {
-    }
+        $error = new HttpErrorController();
+        $error->setContainer($this->container);
+        $response = '';
 
-    public function cacheRoutes(RouteCollector $collector, array $classes)
-    {
-        $cached_routes = Config::AppCache . "/routes/routes.txt";
-        $routes = [];
-
-        if (file_exists($cached_routes)) {
-            $routes = unserialize(file_get_contents($cached_routes));
+        if ($e instanceof ResourceNotFoundException) {
+            $response = $error->error404();
+        } else if ($e instanceof Exception) {
+            $response = $error->error500($e);
         } else {
-            $routes = $collector->collectAll($classes);
-            file_put_contents($cached_routes, serialize($routes));
+            $response = $error->error500($e);
         }
 
-        //debug($routes);
-        return $routes;
-
+        $response->send();
     }
+
 }

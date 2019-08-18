@@ -5,7 +5,6 @@ namespace Castels\Core\Routing;
 
 use Castels\Core\Exceptions\ResourceNotFoundException;
 use Castels\Core\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 class Router
 {
@@ -30,26 +29,27 @@ class Router
     {
         // функция str_replace здесь нужна, для экранирования всех прямых слешей
         // так как они используются в качестве маркеров регулярного выражения
-        $route -> url = '/^' . str_replace('/', '\/', $route -> url) . '$/';
+        $route->url = '/^' . str_replace('/', '\/', $route->url) . '$/';
         //$route -> handler = explode('::', $route -> handler);
 
-        $this -> routes[] = $route;
+        $this->routes[] = $route;
     }
 
 
-    public function getRoutes() {
-        return $this -> routes;
+    public function getRoutes()
+    {
+        return $this->routes;
     }
     // данный метод проверяет запрошенный $url(адрес) на
     // соответствие адресам, хранящимся в массиве $routes
 
-    public function match($url) : \Castels\Core\Routing\Route
+    public function match($url): \Castels\Core\Routing\Route
     {
         //$uri = parse_url($url, PHP_URL_PATH);
         //debug($url);
 
         foreach ($this->routes as $route) {
-            if (preg_match($route -> url, $url, $params)) // сравнение идет через регулярное выражение
+            if (preg_match($route->url, $url, $params)) // сравнение идет через регулярное выражение
             {
                 // соответствие найдено, поэтому удаляем первый элемент из массива $params
                 // который содержит всю найденную строку

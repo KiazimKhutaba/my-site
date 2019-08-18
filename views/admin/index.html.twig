@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Админка {% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/css/admin/admin.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div class="article">
+
+        <div id="admin-actions">
+            <h4>Что можем</h4>
+
+            <ul>
+                <li><a href="/debug">Смотреть роуты</a></li>
+                <li><a href="/admin/articles/add">Добавлять статьи</a></li>
+                <li><a href="/admin/articles/show">Просматривать/Редактировать статьи</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

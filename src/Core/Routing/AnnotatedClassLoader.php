@@ -3,7 +3,6 @@
 
 namespace Castels\Core\Routing;
 
-use Castels\Config;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
@@ -34,7 +33,7 @@ class AnnotatedClassLoader
                     $ite->getSubPathname()
                 );
 
-            $class = str_replace(['\\','/'],'\\',$class);
+            $class = str_replace(['\\', '/'], '\\', $class);
 
             $files[] = $class;
         }

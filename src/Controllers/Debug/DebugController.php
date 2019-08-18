@@ -6,7 +6,6 @@ namespace Castels\Controllers\Debug;
 
 use Castels\Core\Controller;
 use Castels\Core\Routing\Annotation\Route;
-use Castels\Core\Routing\AnnotatedClassLoader;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -27,12 +26,12 @@ class DebugController extends Controller
      */
     public function index()
     {
-        $twig = $this -> get("twig");
-        $app  = $this -> get("app");
+        $twig = $this->get("twig");
+        $app = $this->get("app");
 
-        $routes = $app -> getRoutes($app-> getAnnotatedControllers());
+        $routes = $app->getRoutes($app->getAnnotatedControllers());
 
-        return new Response($twig -> render("debug/index.html.twig", [
+        return new Response($twig->render("debug/index.html.twig", [
             "routes" => $routes
         ]));
     }

@@ -14,10 +14,10 @@ class Route
 
     public function __construct(Annotation\Route $route, $params = [])
     {
-        $this->url     = $route -> url;
-        $this->handler = $route -> handler;
-        $this->methods = $route -> methods;
-        $this->params  = $params;
+        $this->url = $route->url;
+        $this->handler = $route->handler;
+        $this->methods = $route->methods;
+        $this->params = $params;
     }
 
 
@@ -26,7 +26,7 @@ class Route
         return sprintf(
             "@Route(url=\"%s\",handler=\"%s\",methods=\"%s\",params=\"%s\")",
             $this->url, $this->handler,
-            join(',', $this->methods),join(',',$this->params)
+            join(',', $this->methods), join(',', $this->params)
         );
     }
 }

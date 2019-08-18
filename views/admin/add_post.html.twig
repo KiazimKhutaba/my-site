@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Новая история {% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/css/admin/admin.css">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="article">
+
+        <div id="new-post-form">
+
+            <h3>Новая статья</h3>
+
+            {% if errors %}
+                {% for error in errors %}
+                    <div class="errorMsg">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            {% if result %}
+                <div class="info_message">
+                    Запись успешно добалена!
+                </div>
+            {% endif %}
+
+            <form action="/admin/articles/add" method="post">
+
+                <label for="post.name">Название</label>
+                <input type="text" name="title" id="post.name" value="Я буду миллиардером!"/>
+
+                <label for="post.url">URL</label>
+                <input type="text" name="url" value="i-will-be-billioner"/>
+
+                <label for="author">Автор</label>
+                <input type="text" name="author" value="Киазим Хутаба"/>
+
+                <label for="text">Текст</label>
+                <textarea name="text" id="text" cols="30" rows="10">Привет!Я уверен, что буду миллиардером!</textarea>
+
+                <input type="submit" value="Публикуем!" name="publish"/>
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

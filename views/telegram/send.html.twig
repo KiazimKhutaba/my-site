@@ -3,7 +3,7 @@
 {% block style %}
 
     <style>
-        
+
         #text {
             border: 1px solid #d0d0d0;
             padding: 5px;
@@ -26,7 +26,7 @@
         }
 
     </style>
-    
+
 {% endblock %}
 
 
@@ -38,11 +38,11 @@
         <h3>Send Feedback</h3>
 
         {% if tgResponse.ok is defined %}
-        <div class="info_message">
-            Message successfully sent
-        </div>
+            <div class="info_message">
+                Message successfully sent
+            </div>
         {% endif %}
-        
+
         <form action="/telegram/send">
             <p><label for="text">Message</label></p>
             <p>

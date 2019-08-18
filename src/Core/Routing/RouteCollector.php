@@ -36,7 +36,7 @@ class RouteCollector
         //print_r($classAnnotation);
 
         // получаем из класса все публичные методы
-        $refMethods = $refClass->getMethods(ReflectionMethod::IS_PUBLIC );
+        $refMethods = $refClass->getMethods(ReflectionMethod::IS_PUBLIC);
 
         // массив полученных объектов Route, описывающих маршрут
         $routes = [];
