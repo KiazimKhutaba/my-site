@@ -23,6 +23,6 @@ class Controller
 
     public function get($service)
     {
-        return $this->container[$service] ?? false;
+        return $this->container[$service];
     }
 }

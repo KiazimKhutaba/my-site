@@ -26,6 +26,7 @@ class MainController extends Controller
      */
     public function index()
     {
+        $a = $this -> get('hello');
         return $this->render("admin/index.html.twig");
     }
 

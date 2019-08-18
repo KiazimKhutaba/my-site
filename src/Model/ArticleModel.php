@@ -72,7 +72,6 @@ class ArticleModel extends BaseModel
         $stmt->execute(['url' => $url]);
 
         $r = $stmt->fetchAll();
-        //$r = $this->pdo->query($sql) -> fetchAll();
 
         return $r;
     }

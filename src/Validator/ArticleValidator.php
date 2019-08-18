@@ -54,7 +54,7 @@ class ArticleValidator extends Validator
 
         $authorLen = mb_strlen($article->author);
         if ($authorLen < 5 or $authorLen > 50)
-            $this->addError("Длина поле автора должна быть в больше 5 и меньше 50 симолов!");
+            $this->addError("Длина поле автора должна быть  больше 5 и меньше 50 симолов!");
 
 
         $textLen = mb_strlen($article->content);
