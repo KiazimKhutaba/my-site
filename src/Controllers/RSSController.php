@@ -24,7 +24,7 @@ class RSSController extends Controller
         // Fetch the latest Slashdot headlines
         try {
             $slashdotRss =
-                Reader::import('https://www.ekhokavkaza.com/api/zmojye$kjv');
+                Reader::import('https://example.com/feed.rss');
         } catch (RuntimeException $e) {
             // feed import failed
             return new Response("Exception caught importing feed: {$e->getMessage()}");
