@@ -14,7 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
  * @package Castels\Controllers\Debug
  *
  * @Route(
- *   url="/debug"
+ *   url="/debug",
+ *   before={"\Castels\Middleware\Auth"}
  * )
  */
 class DebugController extends Controller
@@ -27,7 +28,7 @@ class DebugController extends Controller
     public function index()
     {
         $twig = $this->get("twig");
-        $app = $this->get("app");
+        $app  = $this->get("app");
 
         $routes = $app->getRoutes($app->getAnnotatedControllers());
 
@@ -35,4 +36,42 @@ class DebugController extends Controller
             "routes" => $routes
         ]));
     }
+
+
+    /**
+     * @Route(
+     *  url="/system/info",
+     *  handler="systemInfo"
+     * )
+     */
+    public static function systemInfo()
+    {
+        $content = sprintf("<pre>%s</pre>", print_r(get_included_files(), true));
+        return new Response($content);
+    }
+
+    /**
+     * @Route(
+     *  url="/routes",
+     *  handler="routes"
+     * )
+     */
+    public function routes()
+    {
+        $app = $this->get("app");
+        $routes = $app->getRoutes($app->getAnnotatedControllers());
+
+        ob_start();
+        array_walk(
+            $routes,
+            function($e) {
+                print $e . "<br/>";
+            }
+        );
+        $content = \ob_get_clean();
+
+        return new Response($content);
+    }
+
+
 }

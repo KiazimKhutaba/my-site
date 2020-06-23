@@ -47,6 +47,7 @@ class Router
     {
         //$uri = parse_url($url, PHP_URL_PATH);
         //debug($url);
+        //debug($this->routes);
 
         foreach ($this->routes as $route) {
             if (preg_match($route->url, $url, $params)) // сравнение идет через регулярное выражение
@@ -62,7 +63,6 @@ class Router
 
         }
 
-        //return "not found";
         throw new ResourceNotFoundException($url);
     }
 }

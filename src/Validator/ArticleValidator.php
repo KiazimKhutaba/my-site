@@ -20,7 +20,6 @@ class ArticleValidator extends Validator
         $this->article = $article;
     }
 
-
     /**
      * @return array
      */
@@ -60,6 +59,12 @@ class ArticleValidator extends Validator
         $textLen = mb_strlen($article->content);
         if ($textLen < 5)
             $this->addError("Смысл публиковать пустую статью?! Введите хотя бы 5 символов!");
+
+        $category = $article->category;
+        if( !in_array( $category, [ "Разное", "PHP", "JavaScript" ] ) )
+            $this->addError("Кажется такой категории нет!");
+
+
 
         return $this->errors;
     }

@@ -2,49 +2,33 @@
 
 {% block content %}
 
+    {% for post in posts %}
     <div class="post">
-        <div class="post-title">Первая статья в блоге</div>
-        <div class="post-info">
-            <span class="post-author">Kiazim.Khutaba</span>
-            <span class="post-date">15 июля 2019 в 11:22</span>
-            <span class="post-category">Разное*</span>
-        </div>
-        <div class="post-image">
-            <img src="images/first-post-in-blog.png"
-                 alt="Первая статья в блоге"
-                 width="300">
-        </div>
-        <div class="post-intro">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Vitae exercitationem numquam voluptatem. Necessitatibus corrupti voluptas officia rem quisquam architecto
-            excepturi,
-            ut voluptate doloremque tenetur sapiente quibusdam minima? Tenetur, omnis veniam.
-        </div>
-        <button class="post-read-next">
-            <a href="/article/12091984">Читать далее</a>
-        </button>
-    </div>
 
-    <div class="post">
-        <div class="post-title">Как создать сайт?</div>
+        <div class="post-title">{{ post.title }}</div>
+
         <div class="post-info">
-            <span class="post-author">Kiazim.Khutaba</span>
-            <span class="post-date">1 июля 2019 в 01:12</span>
-            <span class="post-category">PHP*</span>
+            <span class="post-author">{{ post.author }}</span>
+            <span class="post-date">{{ post.publishedAt }}</span>
+            <span class="post-category">{{ post.category_name }}</span>
         </div>
+
         <div class="post-image">
-            <img src="images/what-is-it.png"
-                 alt="Что там такое"
-                 width="300">
+        {% if post.image %}
+            <img src="/images/articles/{{ post.image }}" alt="{{ post.title }}" width="300">
+        {% else %}
+            <img src="/images/articles/post-does-not-have-poster.png" alt="{{ post.title }}" width="300">
+        {% endif %}
         </div>
+
         <div class="post-intro">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Vitae exercitationem numquam voluptatem. Necessitatibus corrupti voluptas officia rem quisquam architecto
-            excepturi,
-            ut voluptate doloremque tenetur sapiente quibusdam minima? Tenetur, omnis veniam.
+            {{ post.content | striptags | slice(0,250) }}...
         </div>
-        <button class="post-read-next">Читать далее</button>
+
+        <a href="/post/{{ post.url }}" class="post-read-next">Далее</a>
+
     </div>
+    {% endfor %}
 
 
     <div class="pagination">

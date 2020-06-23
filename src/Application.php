@@ -5,6 +5,7 @@ namespace Castels;
 
 
 use Castels\Controllers\HttpErrorController;
+use Castels\Core\Controller;
 use Castels\Core\Exceptions\ResourceNotFoundException;
 use Castels\Core\Routing\AnnotatedClassLoader;
 use Castels\Core\Routing\RouteCollector;
@@ -38,14 +39,11 @@ class Application
 
     public function registerServices()
     {
-        $this->container = new Container();
+        $services = require_once '../config/services.php';
+        $this->container = new Container($services);
 
         // global app instance
         $this->container['app'] = $this;
-
-        $services = require_once '../config/services.php';
-        foreach ($services as $name => $callback)
-            $this->container[$name] = $callback;
     }
 
 
@@ -63,9 +61,19 @@ class Application
         $router->addRoutes($routes);
 
         $route = $router->match($request->getPathInfo());
+        //debug($route);
 
         list($controller, $method) = explode("::", $route->handler);
 
+
+        // if(isset($route->before)) {
+        //     $middlewares = $route->before;
+        //     foreach( $middlewares as $middleware ) {
+        //         new $middleware();
+        //     }
+        // }
+
+        /** @var Controller $obj */
         $obj = new $controller();
         $obj->setContainer($this->container);
 

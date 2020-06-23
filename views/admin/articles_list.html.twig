@@ -10,13 +10,11 @@
 {% block content %}
 
     <div class="article">
-
         <ul>
-            {% for article in articles %}
-                <li>{{ article.id }}. <a href="{{ article.url }}">{{ article.title }}</a></li>
-            {% endfor %}
+        {% for article in articles %}
+            <li>{{ article.id }}. <a href="/post/{{ article.url }}">{{ article.title }}</a></li>
+        {% endfor %}
         </ul>
-
     </div>
 
 {% endblock %}

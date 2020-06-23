@@ -79,18 +79,5 @@ class HttpErrorController extends Controller
 
         return $response;
     }
-
-
-    /**
-     * @Route(
-     *     url="/long/args/(\w+)/(\d+)/(\d+)/(\d+)/([\w\-]+)",
-     *     handler="veryLongArgs"
-     * )
-     */
-    public function veryLongArgs($company, $year, $month, $day, $url)
-    {
-        return new Response(
-            sprintf("Co: %s, %d/%d/%d. Url: %s", $company, $year, $month, $day, $url)
-        );
-    }
+    
 }

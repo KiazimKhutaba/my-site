@@ -16,12 +16,15 @@ class Route
     public $handler = ""; // обработчик - метод класса
     public $methods = [];
 
+    // for middleware
+    public $before  = [];
+
 
     public function __toString()
     {
         return sprintf(
-            "@Route(url=\"%s\",handler=\"%s\",methods=\"%s\")",
-            $this->url, $this->handler, join(',', $this->methods)
+            "@Route(url=\"%s\",handler=\"%s\",methods=\"%s\",before=\"%s\")",
+            $this->url, $this->handler, join(',', $this->methods), join(',',$this->before)
         );
     }
 }

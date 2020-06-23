@@ -14,11 +14,20 @@ use PDO;
  * @package Castels\Controllers\Admin
  *
  * @Route(
- *  url="/admin"
+ *  url="/admin",
+ *  before={"Middleware\Auth"}
  * )
  */
-class MainController extends Controller
+class AdminController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     if( !isset($_COOKIE['login33']) ) {
+    //         header('Location: /login');
+    //     }
+    // }
+
     /**
      * @Route(
      *   handler="index"
@@ -26,7 +35,6 @@ class MainController extends Controller
      */
     public function index()
     {
-        $a = $this -> get('hello');
         return $this->render("admin/index.html.twig");
     }
 
@@ -66,12 +74,11 @@ class MainController extends Controller
             $articleModel = new ArticleModel($db);
             $article = $articleModel->makeArticle($_REQUEST);
 
-            //$url = $articleModel -> getURL($article->url);
-            //exit(print_r($url,1));
 
             $validator = new ArticleValidator($article);
             $validator->setModel($articleModel);
             $errors = $validator->validate();
+            
             if ($errors) {
                 $data["errors"] = $errors;
                 return $this->render("admin/add_post.html.twig", $data);

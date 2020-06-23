@@ -25,4 +25,7 @@ class ArticleEntity extends Entity
 
     /** @var string */
     public $content;
+
+    /** @var string */
+    public $category;
 }

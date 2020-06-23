@@ -51,6 +51,7 @@ class RouteCollector
                     $route->url = "{$classAnnotation -> url}{$methodAnnotation -> url}";
                     $route->handler = "{$class}::{$methodAnnotation->handler}";
                     $route->methods = array_merge($classAnnotation->methods, $methodAnnotation->methods);
+                    $route->before  = $classAnnotation->before;
 
                     $routes[] = $route;
                 } else {

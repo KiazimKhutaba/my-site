@@ -5,6 +5,9 @@ namespace Castels\Controllers;
 use Castels\Core\Controller;
 use Castels\Core\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Castels\Model\ArticleModel;
+
+
 
 /**
  * Class IndexController
@@ -15,18 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class IndexController extends Controller
 {
-    /**
-     * @Route(
-     *  url="/system/info",
-     *  handler="systemInfo"
-     * )
-     */
-    public static function systemInfo()
-    {
-        $content = sprintf("<pre>%s</pre>", print_r(get_included_files(), true));
-
-        return new Response($content);
-    }
+    
 
     /**
      *
@@ -37,8 +29,14 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return $this->render('index/main_page.html.twig');
+        $model = new ArticleModel($this->get("pdo"));
+        $posts = $model -> getAll();
+
+        //debug($posts);
+
+        return $this->render('index/main_page.html.twig', [ "posts" => $posts ]);
     }
+
 
     /**
      *
@@ -57,19 +55,30 @@ class IndexController extends Controller
         return $response;
     }
 
+
     /**
-     *
+     * 
      * @Route(
-     *     url="/article/(\d+)",
-     *     handler="article"
+     *     url="/post/([\.\-\w]+)",
+     *     handler="post" 
      * )
-     * @param int $id article id
-     * @return Response
      */
-    public function article($id)
+    public function post($slug)
     {
-        return $this->render("index/article.html.twig", ["id" => $id]);
+        $model = new ArticleModel($this->get('pdo'));
+        $post = $model -> getArticle($slug);
+
+        //print_r($article);
+
+        if( $post ) {
+            return $this->render("index/article.html.twig", [ "post" => $post ]);
+        }
+
+        //$this -> get('event_dispatcher') -> trigger(PostEvent::POST_OPENED,new PostEvent($post));
+
+        throw new \Castels\Core\Exceptions\ResourceNotFoundException();
     }
+
 
     /**
      *

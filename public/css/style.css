@@ -140,6 +140,14 @@ body .container .content .post .post-read-next {
     border-bottom-right-radius: 50px;
 }
 
+body .container .content .post a.post-read-next {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    width: 80px;
+}
+
 body .container .content .post .post-read-next:hover {
     cursor: pointer;
     background: #f00;
@@ -178,3 +186,8 @@ body .container .footer {
     padding: 10px;
     color: #444;
 }
+
+code.code {
+    overflow: scroll;
+}
+
