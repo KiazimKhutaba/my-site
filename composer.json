@@ -1,7 +1,7 @@
 {
   "require": {
     "doctrine/annotations": "*",
-    "twig/twig": "^2.11",
+    "twig/twig": "^3.11",
     "pimple/pimple": "^3.2",
     "symfony/http-foundation": "^4.3",
     "zendframework/zend-feed": "^2.12",
