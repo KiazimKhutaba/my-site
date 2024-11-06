@@ -3,7 +3,7 @@
     "doctrine/annotations": "*",
     "twig/twig": "^2.11",
     "pimple/pimple": "^3.2",
-    "symfony/http-foundation": "^4.3",
+    "symfony/http-foundation": "^5.4",
     "zendframework/zend-feed": "^2.12",
     "zendframework/zend-http": "^2.10",
     "ext-json": "*",
